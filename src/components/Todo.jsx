@@ -17,6 +17,13 @@ function Todo() {
     }
   };
 
+  const handleKeyPress = (e) => {
+    if (e.key === 'Enter') {
+      e.preventDefault(); 
+      addTodo();
+    }
+  };
+
   const deleteTodo = (id) => {
     setTodos(todos.filter((todo) => todo.id !== id));
   };
@@ -64,12 +71,11 @@ function Todo() {
           placeholder="Add a new todo"
           value={newTodo}
           onChange={(e) => setNewTodo(e.target.value)}
+          onKeyDown={handleKeyPress}
         />
         <button
           className="bg-blue-500 hover:bg-blue-600 text-white rounded-r py-2 px-4 dark:bg-orange-700"
           onClick={addTodo}
-          onKeyDown={e => e.key === 'Enter' ? addTodo() :
-            ''}
         >
           Add
         </button>
