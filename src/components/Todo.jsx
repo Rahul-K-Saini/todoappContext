@@ -12,6 +12,9 @@ function Todo() {
       setTodos([...todos, { id: Date.now(), text: newTodo, completed: false }]);
       setNewTodo('');
     }
+    else{
+        alert("empty todo")
+    }
   };
 
   const deleteTodo = (id) => {
@@ -63,7 +66,6 @@ function Todo() {
           placeholder="Add a new todo"
           value={newTodo}
           onChange={(e) => setNewTodo(e.target.value)}
-          required
         />
         <button
           className="bg-blue-500 hover:bg-blue-600 text-white rounded-r py-2 px-4 dark:bg-orange-700"
