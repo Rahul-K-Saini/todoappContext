@@ -5,8 +5,7 @@ function Todo() {
   const [todos, setTodos] = useState([]);
   const [newTodo, setNewTodo] = useState('');
   const [editedTodo, setEditedTodo] = useState(null);
-  const [editing, setEditing] = useState(false); // New state variable for editing mode
-
+  const [editing, setEditing] = useState(false); 
   const addTodo = () => {
     if (newTodo.trim() !== '') {
       setTodos([...todos, { id: Date.now(), text: newTodo, completed: false }]);
@@ -35,8 +34,6 @@ function Todo() {
           : prevTodo
       )
     );
-
-    // Disable editing when clicking the checkbox
     if (editing) {
       setEditing(false);
       setEditedTodo(null);
@@ -117,7 +114,6 @@ function Todo() {
                     setEditedTodo(todo.id);
                   }
 
-                  // Update editing state
                   setEditing(editedTodo !== todo.id);
                 }}
               >
