@@ -5,14 +5,15 @@ function Todo() {
   const [todos, setTodos] = useState([]);
   const [newTodo, setNewTodo] = useState('');
   const [editedTodo, setEditedTodo] = useState(null);
-  const [editing, setEditing] = useState(false); 
+  const [editing, setEditing] = useState(false);
+
   const addTodo = () => {
     if (newTodo.trim() !== '') {
       setTodos([...todos, { id: Date.now(), text: newTodo, completed: false }]);
       setNewTodo('');
     }
-    else{
-        alert("empty todo")
+    else {
+      alert("empty todo")
     }
   };
 
@@ -67,6 +68,8 @@ function Todo() {
         <button
           className="bg-blue-500 hover:bg-blue-600 text-white rounded-r py-2 px-4 dark:bg-orange-700"
           onClick={addTodo}
+          onKeyDown={e => e.key === 'Enter' ? addTodo() :
+            ''}
         >
           Add
         </button>
@@ -76,9 +79,8 @@ function Todo() {
         {todos.map((todo) => (
           <li
             key={todo.id}
-            className={`flex justify-between items-center ${
-              todo.completed ? 'bg-green-500' : 'bg-white dark:bg-slate-600'
-            } rounded-lg shadow-md p-3 mt-2`}
+            className={`flex justify-between items-center ${todo.completed ? 'bg-green-500' : 'bg-white dark:bg-slate-600'
+              } rounded-lg shadow-md p-3 mt-2`}
           >
             <div>
               <input
@@ -89,11 +91,9 @@ function Todo() {
             </div>
             <input
               type="text"
-              className={`${
-                editedTodo === todo.id && !todo.completed ? 'border' : ''
-              } p-2 mx-1 outline-none w-full bg-transparent rounded-lg ${
-                todo.completed ? 'line-through' : ''
-              }`}
+              className={`${editedTodo === todo.id && !todo.completed ? 'border' : ''
+                } p-2 mx-1 outline-none w-full bg-transparent rounded-lg ${todo.completed ? 'line-through' : ''
+                }`}
               value={todo.text}
               onChange={(e) => {
                 if (editedTodo === todo.id) {
@@ -104,9 +104,8 @@ function Todo() {
             />
             <div className='flex'>
               <button
-                className={`text-yellow-500 hover:text-yellow-600 mr-2 ${
-                  todo.completed ? 'hidden' : ''
-                }`}
+                className={`text-yellow-500 hover:text-yellow-600 mr-2 ${todo.completed ? 'hidden' : ''
+                  }`}
                 onClick={() => {
                   if (editedTodo === todo.id) {
                     setEditedTodo(null);
